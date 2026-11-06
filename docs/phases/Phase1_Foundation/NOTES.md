@@ -30,3 +30,8 @@
 ## 1.6 Python envs
 - `rl/` needs two workarounds (recorded in D-011): `grpcio` override (mlagents caps a version with no arm64 macOS wheel) and `setuptools<81` (mlagents imports `pkg_resources`).
 - PyPI `mlagents` is 1.1.0 and pairs with Unity package 4.1.0; the real Unity-to-Python handshake is untested until Phase 2b.
+
+## 1.8 / 1.9f
+- Project fixed timestep was Unity's 0.02 default; now 0.002 in `TimeManager.asset` (D-004). The test failed red first, then green.
+- Every headless Unity run drifts `ProjectSettings/ProjectSettings.asset` and `ProjectAuditorSettings.asset`: discard with `git checkout -- DroneSim/ProjectSettings/<file>` before committing.
+- The statusline-setup subagent has no Bash tool: it can write files but not chmod or test them.
