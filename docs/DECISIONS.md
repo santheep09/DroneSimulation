@@ -48,5 +48,9 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 ### D-013 · 2026-11-05 · Unity version: 6.6, pinned to 6000.6.2f1 · **Accepted**
 - Already installed and newest; meets the ML-Agents 4.x (6000.0+) and Unity MCP (Unity 6+) requirements.
 - Considered 6.3 LTS (supported to Dec 2027, most-tested packages). Chose 6.6 to stay on one, current editor.
-- Rules: the exact editor version is recorded in `sim/ProjectSettings/ProjectVersion.txt` and README; **no editor upgrades mid-phase**. Any upgrade happens only at a phase boundary, as a new D-xxx entry, with determinism tests and benchmarks re-run before and after.
+- Rules: the exact editor version is recorded in `DroneSim/ProjectSettings/ProjectVersion.txt` and README; **no editor upgrades mid-phase**. Any upgrade happens only at a phase boundary, as a new D-xxx entry, with determinism tests and benchmarks re-run before and after.
 - Risk: ML-Agents / `com.unity.ai.assistant` are documented against LTS. Check both install cleanly in Phase 1 (TASKS 1.6, 1.7); if either fails, revisit this decision.
+
+### D-014 · 2026-11-06 · Unity project folder is `DroneSim/` (was `sim/`) · **Accepted**
+- The Unity project was created as `DroneSim` and kept; it matches the `DroneSim.*` C# namespace.
+- All earlier references to `sim/` (BRIEF, CLAUDE.md, ignore rules, permissions) now mean `DroneSim/`.

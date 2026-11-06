@@ -43,7 +43,7 @@ DroneSimulation/                   ← PROJECT level (committed to git)
   .claude/
     settings.json                  permissions, hooks, defaults, shared (committed)
     settings.local.json            personal overrides, output style choice (git-ignored)
-    rules/*.md                     topic rules, optionally path-scoped (e.g. only for sim/**/*.cs)
+    rules/*.md                     topic rules, optionally path-scoped (e.g. only for DroneSim/**/*.cs)
     skills/<name>/SKILL.md         project skills = slash commands (/phase-status …)
     agents/<name>.md               project subagents (test-runner, code-reviewer …)
     hooks/*.sh                     scripts the hooks call
@@ -88,7 +88,7 @@ Note: `.claude/commands/*.md` still works, but **custom commands have been merge
 ### 4.2 Rules (`.claude/rules/*.md`): conventions only where they apply
 - Same as CLAUDE.md but split by topic. With `paths:` frontmatter, a rule loads **only when Claude touches matching files**, which saves context.
 - Our three:
-  - `unity-csharp.md`, `paths: ["sim/**/*.cs"]`: naming, one MonoBehaviour per file, NED/SI types never touch `Transform` outside the boundary class, no allocations in `FixedUpdate`, determinism (seeded RNG only).
+  - `unity-csharp.md`, `paths: ["DroneSim/**/*.cs"]`: naming, one MonoBehaviour per file, NED/SI types never touch `Transform` outside the boundary class, no allocations in `FixedUpdate`, determinism (seeded RNG only).
   - `python.md`, `paths: ["ml/**/*.py", "rl/**/*.py"]`: uv only (never pip), type hints, ruff, pytest, seeds everywhere.
   - `learning-mode.md`, `paths: ["learning/**"]`: the full Learning-mode protocol (hints → leading questions → tests only → solution only on "show me the solution").
 - Then the Conventions section in CLAUDE.md can shrink to one line pointing to rules.
@@ -122,7 +122,7 @@ In `.claude/settings.json`. Evaluated **deny → ask → allow**; the first matc
     "ask":  [ "Bash(git push*)", "Bash(rm *)", "Bash(gh repo *)" ],
     "deny": [
       "Read(./.env)", "Read(./**/.env)",
-      "Edit(/sim/Library/**)", "Edit(/sim/Temp/**)", "Edit(/datasets/**)", "Edit(/runs/**)"
+      "Edit(/DroneSim/Library/**)", "Edit(/DroneSim/Temp/**)", "Edit(/datasets/**)", "Edit(/runs/**)"
     ]
   }
 }
@@ -241,7 +241,7 @@ Install: `/plugin install csharp-lsp@claude-plugins-official`. These are optiona
 - `/rename phase1-repo-setup` to name sessions; `claude --resume` to find them later.
 
 **Prompting habits**
-- Be specific: file paths (`@sim/Assets/...`), the constraint, and what "done" looks like (a test or command).
+- Be specific: file paths (`@DroneSim/Assets/...`), the constraint, and what "done" looks like (a test or command).
 - For bigger features: *"Interview me with AskUserQuestion, then write a spec to docs/phases/…/SPEC_x.md"*, then start a **fresh** session to implement it.
 - Ask for evidence: "show me the test output", not "is it working?".
 - Point to patterns: "follow the style of `infra/unity_test.sh`".

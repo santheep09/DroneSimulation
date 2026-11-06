@@ -4,7 +4,7 @@
 - Node/npm not installed; probably not needed for the Unity MCP. Verify in 1.7.
 - Running `git lfs env` outside a repo creates an `lfs/` folder in the cwd. Run it only inside a repo.
 - `*.onnx` is deliberately NOT git-ignored (trained models may be committed as Unity assets). `*.pt`/`*.pth`/`*.ckpt` are ignored.
-- PNG is LFS-tracked only under `sim/Assets/`, so docs screenshots stay plain git.
+- PNG is LFS-tracked only under `DroneSim/Assets/`, so docs screenshots stay plain git.
 - Repo: https://github.com/santheep09/DroneSimulation (`main`).
 
 ## 1.9 gotchas

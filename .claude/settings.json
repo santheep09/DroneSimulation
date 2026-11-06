@@ -20,8 +20,8 @@
     "deny": [
       "Read(./.env)",
       "Read(./**/.env)",
-      "Edit(/sim/Library/**)",
-      "Edit(/sim/Temp/**)",
+      "Edit(/DroneSim/Library/**)",
+      "Edit(/DroneSim/Temp/**)",
       "Edit(/datasets/**)",
       "Edit(/runs/**)"
     ]

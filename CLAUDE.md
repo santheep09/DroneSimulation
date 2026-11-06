@@ -27,7 +27,7 @@ If unsure which mode a task is in, **ask**. Default to Learning mode for anythin
 - One TASKS.md task at a time; say which one at session start.
 - **Plan mode** before changes touching more than 3 files, any new system, or anything in a new phase.
 - After each task: run the checks → small commit with a clear message → tick TASKS.md with the hash → gotchas to NOTES.md.
-- Never commit `sim/Library`, `Temp`, `Logs`, `UserSettings`, `Builds`, `.venv`, datasets, training runs.
+- Never commit `DroneSim/Library`, `Temp`, `Logs`, `UserSettings`, `Builds`, `.venv`, datasets, training runs.
 - Everything that generates data or runs simulation takes a **seed** and is deterministic.
 - Prefer headless CLI steps (`-batchmode`, `-runTests`, `-executeMethod`) so results can be checked without the Editor. When the Editor is required, tell me exactly what to click or check.
 - Unity MCP is **read-only** until DECISIONS.md says otherwise.
@@ -40,7 +40,7 @@ If unsure which mode a task is in, **ask**. Default to Learning mode for anythin
 - Custom label capture (no Unity Perception): segmentation, 2D boxes, COCO export.
 
 ## Layout
-`sim/` Unity 6.6 project, pinned to 6000.6.2f1 (D-013: never upgrade mid-phase) (C# namespace `DroneSim.*`) · `ml/` Python 3.12 + current PyTorch (uv) · `rl/` Python 3.10.12 + torch 2.2 + mlagents (uv; ML-Agents requires it) · `learning/` Phase 2 exercises · `infra/` scripts · `docs/` plan, decisions, phases, learning log.
+`DroneSim/` Unity 6.6 project, pinned to 6000.6.2f1 (D-013: never upgrade mid-phase) (C# namespace `DroneSim.*`) · `ml/` Python 3.12 + current PyTorch (uv) · `rl/` Python 3.10.12 + torch 2.2 + mlagents (uv; ML-Agents requires it) · `learning/` Phase 2 exercises · `infra/` scripts · `docs/` plan, decisions, phases, learning log.
 
 ## Conventions
 - C#: PascalCase types/methods, `_camelCase` private fields, one MonoBehaviour per file, NED/SI types never touch `Transform` outside the boundary class.
