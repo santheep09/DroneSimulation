@@ -35,3 +35,11 @@
 - Project fixed timestep was Unity's 0.02 default; now 0.002 in `TimeManager.asset` (D-004). The test failed red first, then green.
 - Every headless Unity run drifts `ProjectSettings/ProjectSettings.asset` and `ProjectAuditorSettings.asset`: discard with `git checkout -- DroneSim/ProjectSettings/<file>` before committing.
 - The statusline-setup subagent has no Bash tool: it can write files but not chmod or test them.
+
+## 1.7 Unity MCP (read-only)
+- Package `com.unity.ai.assistant` 2.21.0-pre.2 (pre-release). Bridge: Edit > Project Settings > AI > Unity MCP Server (auto-starts with the Editor). Unity's Integrations tab > Configure adds a **user-scope** server `unity-mcp` to Claude Code (not committed; it holds the home path). New tools load only at session start: start a new session after configuring.
+- Tools (7): `Unity_GetConsoleLogs` (read), `Unity_Camera_Capture`, `Unity_SceneView_Capture2DScene`, `Unity_SceneView_CaptureMultiAngleSceneView` (renders), `Unity_AssetGeneration_GetModels`, `Unity_AssetGeneration_GenerateAsset` (write, third-party generation), `Unity_RunCommand` (compiles and runs C#).
+- Permissions: allow console; ask for RunCommand/captures/GetModels; deny GenerateAsset (the deny removed it from the session's tool list).
+- Can: read the Console, capture views, read the hierarchy via a read-only `RunCommand` script (tested: Main Camera, Directional Light). Cannot: dedicated hierarchy/inspector reads, or enforce read-only for RunCommand by name (limit recorded in D-012).
+- The Editor must be closed for `infra/unity_test.sh`; an open Editor drifts `ProjectAuditorSettings.asset` (discard it).
+- The privacy guard blocks Bash commands containing the home path: use relative paths or `$HOME`.

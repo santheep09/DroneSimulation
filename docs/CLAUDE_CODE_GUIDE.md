@@ -39,7 +39,6 @@ Two levels: **user** (`~/.claude/`, applies to all your projects, never committe
 DroneSimulation/                   ← PROJECT level (committed to git)
   CLAUDE.md                        project instructions, loaded every session (< 200 lines)
   CLAUDE.local.md                  personal project notes (git-ignored)
-  .mcp.json                        project MCP servers (Unity MCP)
   .claude/
     settings.json                  permissions, hooks, defaults, shared (committed)
     settings.local.json            personal overrides, output style choice (git-ignored)
@@ -67,7 +66,7 @@ Note: `.claude/commands/*.md` still works, but **custom commands have been merge
 | `.claude/rules/` (C#, Python, learning) | ❌ | **1.9** |
 | Skills: `/phase-status`, `/log`, `/phase-verify` | ❌ | **1.9** |
 | Subagents: test-runner, code-reviewer, phase-verifier | ❌ | **1.9** |
-| `.mcp.json`: Unity MCP (read-only) | ❌ | 1.7 |
+| Unity MCP (read-only): user-scope server `unity-mcp` + permissions | ✅ | 1.7 |
 | Code-intelligence plugins (C#, Python) | ❌ optional | **1.9** |
 | Status line (context %, branch) | ❌ | **1.9** |
 | User-level `~/.claude/CLAUDE.md` + notification hook | ❌ | **1.9** |
@@ -117,7 +116,7 @@ In `.claude/settings.json`. Evaluated **deny → ask → allow**; the first matc
       "Bash(git add *)", "Bash(git commit *)",
       "Bash(uv run pytest*)", "Bash(uv run ruff *)",
       "Bash(bash infra/*)", "Bash(infra/*)"
-      // + Unity MCP *read* tools, named exactly after 1.7, e.g. "mcp__unity__Unity_ReadConsole"
+      // + Unity MCP *read* tools, named exactly after 1.7, e.g. "mcp__unity-mcp__Unity_GetConsoleLogs"
     ],
     "ask":  [ "Bash(git push*)", "Bash(rm *)", "Bash(gh repo *)" ],
     "deny": [
@@ -195,7 +194,7 @@ How to call one: it happens automatically from the `description`, or say *"use t
 MCP gives Claude tools from other programs. Scopes: **local** (default, `~/.claude.json`, this project only, just you), **project** (`.mcp.json`, committed), **user** (all your projects). Add with `claude mcp add …`, manage with `/mcp`. Project servers need a one-time approval.
 
 For us:
-- **Unity MCP** (official, `com.unity.ai.assistant`), **project scope** in `.mcp.json`. Lets Claude read the scene hierarchy and Console and inspect objects. The docs list no read-only mode, so we allow only read tools in permissions and deny/ask the rest (D-012). Set up in task 1.7.
+- **Unity MCP** (official, `com.unity.ai.assistant`), **user scope**, server name `unity-mcp`, added by Unity's own Integrations tab (Project Settings > AI > Unity MCP Server > Integrations > Configure; it points at the relay binary in `~/.unity/relay/`, so it is not committed). Exposes 7 tools: Console logs, camera/scene-view captures, asset generation and `Unity_RunCommand` (run C#); there is no dedicated hierarchy tool. The docs list no read-only mode, so we allow only read tools in permissions and deny/ask the rest (D-012). Set up in task 1.7.
 - **GitHub**: no MCP needed. The `gh` CLI is already logged in and is more context-efficient. CLAUDE.md says "use `gh` for GitHub".
 - **Docs/search**: built-in WebFetch/WebSearch are enough. Don't add servers "just in case": every MCP server's tool list costs context in every session.
 

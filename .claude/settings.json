@@ -10,14 +10,21 @@
       "Bash(uv run pytest*)",
       "Bash(uv run ruff *)",
       "Bash(bash infra/*)",
-      "Bash(infra/*)"
+      "Bash(infra/*)",
+      "mcp__unity-mcp__Unity_GetConsoleLogs"
     ],
     "ask": [
       "Bash(git push*)",
       "Bash(rm *)",
-      "Bash(gh repo *)"
+      "Bash(gh repo *)",
+      "mcp__unity-mcp__Unity_RunCommand",
+      "mcp__unity-mcp__Unity_Camera_Capture",
+      "mcp__unity-mcp__Unity_SceneView_Capture2DScene",
+      "mcp__unity-mcp__Unity_SceneView_CaptureMultiAngleSceneView",
+      "mcp__unity-mcp__Unity_AssetGeneration_GetModels"
     ],
     "deny": [
+      "mcp__unity-mcp__Unity_AssetGeneration_GenerateAsset",
       "Read(./.env)",
       "Read(./**/.env)",
       "Edit(/DroneSim/Library/**)",

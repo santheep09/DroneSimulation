@@ -45,9 +45,10 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 - Resolved versions: `ml/` Python 3.12.16, torch 2.15.0, numpy 2.5.4 (MPS available). `rl/` Python 3.10.12, torch 2.2.2, mlagents 1.1.0, numpy 1.23.5, protobuf 3.20.3.
 - `rl/` workarounds: `grpcio` overridden to `>=1.49,<=1.53.2` (mlagents caps 1.48.2, which has no arm64 macOS wheel); `setuptools<81` (mlagents imports `pkg_resources`); `uv.lock` limited to Apple silicon via `tool.uv.environments`.
 
-### D-012 · 2026-11-05 · Unity MCP read-only enforced via Claude Code permissions · **Proposed** (confirm in TASKS 1.7)
+### D-012 · 2026-11-05 · Unity MCP read-only enforced via Claude Code permissions · **Accepted** (confirmed in TASKS 1.7, 2026-11-06)
 - The Unity MCP docs list no read-only mode; access control is only client approval (Allow/Revoke).
-- Read-only means: allow only read tools (scene/hierarchy reading, console reading) in `.claude/settings.json`; deny or ask for scene/asset-modifying tools until this entry is superseded.
+- Server: user-scope `unity-mcp` (created by Unity's Integrations tab; the path contains the home dir, so it stays out of the repo). Rules in `.claude/settings.json`: **allow** `Unity_GetConsoleLogs`; **ask** `Unity_RunCommand` and the capture tools and `GetModels`; **deny** `Unity_AssetGeneration_GenerateAsset`.
+- Limit: the server has no hierarchy-reading tool, and `Unity_RunCommand` runs arbitrary C# that a permission rule can't tell read from write. Hierarchy reads go through `RunCommand` with a read-only script the user approves each time. Read-only is therefore enforced by the user's per-call approval, not by the rule alone. Revisit if Unity adds dedicated read tools.
 
 ### D-013 · 2026-11-05 · Unity version: 6.6, pinned to 6000.6.2f1 · **Accepted**
 - Already installed and newest; meets the ML-Agents 4.x (6000.0+) and Unity MCP (Unity 6+) requirements.
