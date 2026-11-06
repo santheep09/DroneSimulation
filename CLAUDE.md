@@ -43,8 +43,7 @@ If unsure which mode a task is in, **ask**. Default to Learning mode for anythin
 `DroneSim/` Unity 6.6 project, pinned to 6000.6.2f1 (D-013: never upgrade mid-phase) (C# namespace `DroneSim.*`) · `ml/` Python 3.12 + current PyTorch (uv) · `rl/` Python 3.10.12 + torch 2.2 + mlagents (uv; ML-Agents requires it) · `learning/` Phase 2 exercises · `infra/` scripts · `docs/` plan, decisions, phases, learning log.
 
 ## Conventions
-- C#: PascalCase types/methods, `_camelCase` private fields, one MonoBehaviour per file, NED/SI types never touch `Transform` outside the boundary class.
-- Python: type hints, ruff, small testable functions, pytest.
+Path-scoped rules in `.claude/rules/` (`unity-csharp.md`, `python.md`, `learning-mode.md`) load when matching files are touched.
 
 ## Commands (fill in as they're created)
 - Setup check: `infra/setup_check.sh`
