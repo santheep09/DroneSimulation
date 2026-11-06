@@ -13,3 +13,10 @@
 - `py_lint.sh` is a no-op until `ml/` or `rl/` has a `pyproject.toml` (task 1.6).
 - User-level macOS notification hook (`~/.claude/settings.json`) not yet added; needs your OK.
 - Hook scripts verified by piping JSON; live in-session block still to be confirmed in a fresh session.
+
+## 1.4 gotchas
+- Unity Hub's "create git repository" option makes a nested `.git` plus a GitHub repo (with your git identity). Leave it off; the project lives in the main repo.
+- First open re-serialises a few tracked assets (`DefaultVolumeProfile.asset`, `ProjectAuditorSettings.asset`, new `TimelineSettings.asset`). Harmless; commit them once.
+- Project folder is `DroneSim/` (D-014), not `sim/`.
+- Rider preference lives in `com.unity3d.UnityEditor5.x` (`kScriptsDefaultApp`); it saves when Unity quits normally.
+- Template tutorial assets (`Readme.asset`, `TutorialInfo/`) are still present; one PNG is LFS-tracked.
