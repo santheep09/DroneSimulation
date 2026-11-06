@@ -1,0 +1,21 @@
+[project]
+name = "dronesim-rl"
+version = "0.1.0"
+requires-python = "==3.10.12"
+dependencies = [
+    "mlagents==1.1.0",
+    "setuptools<81",
+    "torch~=2.2.1",
+]
+
+[tool.uv]
+# mlagents pins old grpcio/onnx/numpy that lack wheels on some platforms; lock Apple silicon only.
+environments = ["sys_platform == 'darwin' and platform_machine == 'arm64'"]
+# grpcio 1.48.2 (mlagents 1.1.0 cap) has no arm64 macOS wheel. Upstream's 4.x repo already allows <=1.53.2.
+override-dependencies = ["grpcio>=1.49,<=1.53.2"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.4",
+]
