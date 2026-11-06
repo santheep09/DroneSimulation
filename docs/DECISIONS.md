@@ -19,7 +19,9 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 - Fast inner attitude/rate loop, slower outer position loop (Phase 2 experiment: 500 Hz inner / 50 Hz outer).
 
 ### D-005 · 2026-10-07 · RL with Unity ML-Agents 4.x · **Accepted**
-- The original plan says 4.0.x. As of Jul 2026, com.unity.ml-agents **4.1.0** is out. Pick and pin one in Phase 1 and match the `mlagents` Python package to it.
+- The original plan said 4.0.x. **Chosen (TASKS 1.6, 2026-11-06): Unity package `com.unity.ml-agents` 4.1.0** (released 2026-07-27, latest, no 4.1.x patch). It fixes a Play-mode exit crash, IL2CPP protobuf issues and `StackingSensor`; the 4.1 install docs describe it.
+- Python side: **`mlagents==1.1.0`** from PyPI (newest release, Oct 2024). The 4.1 install docs pair it with Python 3.10.12. PyPI has no newer `mlagents`; the gymnasium migration in 4.1.0 exists only on GitHub, not in the PyPI wheel.
+- Not yet verified: the real Unity-to-Python handshake. That happens when the package is added to `DroneSim/` (Phase 2b). 1.6 only proves `mlagents-learn` installs and runs.
 
 ### D-006 · 2026-10-07 · Tooling budget (details kept privately) · **Accepted**
 
@@ -35,11 +37,13 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 ### D-010 · 2026-11-05 · Plan in phases, not weeks · **Accepted**
 - Phases end on exit criteria, not dates. Week numbers in the master plan are a guide only.
 
-### D-011 · 2026-11-05 · Two Python environments, both managed by uv · **Proposed** (confirm in TASKS 1.6)
+### D-011 · 2026-11-05 · Two Python environments, both managed by uv · **Accepted** (confirmed in TASKS 1.6, 2026-11-06)
 - ML-Agents 4.x requires Python 3.10.1–3.10.12 and `torch~=2.2.1`. That's too old to be the main ML env.
 - `ml/` → Python 3.12 + current PyTorch (MPS) for Phase 2a and Phase 4 (detector, datasets).
 - `rl/` → Python 3.10.12 + torch 2.2.x + `mlagents` (version matched to the Unity package) for Phase 2b and Phase 5.
 - Replaces the single-env part of D-005.
+- Resolved versions: `ml/` Python 3.12.16, torch 2.15.0, numpy 2.5.4 (MPS available). `rl/` Python 3.10.12, torch 2.2.2, mlagents 1.1.0, numpy 1.23.5, protobuf 3.20.3.
+- `rl/` workarounds: `grpcio` overridden to `>=1.49,<=1.53.2` (mlagents caps 1.48.2, which has no arm64 macOS wheel); `setuptools<81` (mlagents imports `pkg_resources`); `uv.lock` limited to Apple silicon via `tool.uv.environments`.
 
 ### D-012 · 2026-11-05 · Unity MCP read-only enforced via Claude Code permissions · **Proposed** (confirm in TASKS 1.7)
 - The Unity MCP docs list no read-only mode; access control is only client approval (Allow/Revoke).

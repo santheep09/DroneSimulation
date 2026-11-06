@@ -35,6 +35,19 @@ if have uv; then
   case "$pys" in *3.10.12*) ok "uv Python 3.10.12" "present (ML-Agents)";; *) miss "uv Python 3.10.12" "uv python install 3.10.12";; esac
   case "$pys" in *3.12*) ok "uv Python 3.12" "present (main ML)";; *) miss "uv Python 3.12" "uv python install 3.12";; esac
 fi
+# Project envs (read-only: --frozen --no-sync never installs or edits the lock)
+here_py="$(cd "$(dirname "$0")/.." && pwd)"
+if have uv; then
+  if [ -f "$here_py/ml/uv.lock" ]; then
+    out="$(cd "$here_py/ml" && uv run --frozen --no-sync python -c "import sys, torch; print(sys.version.split()[0], 'torch', torch.__version__, 'mps', torch.backends.mps.is_available())" 2>&1 | tail -1)"
+    case "$out" in *"mps True"*) ok "ml/ env" "$out";; *"torch"*) warn "ml/ env" "$out (MPS not available)";; *) miss "ml/ env" "cd ml && uv sync";; esac
+  else miss "ml/ env" "ml/uv.lock not found (TASKS 1.6)"; fi
+  if [ -f "$here_py/rl/uv.lock" ]; then
+    out="$(cd "$here_py/rl" && uv run --frozen --no-sync python -W ignore -c "import sys, torch; from importlib.metadata import version; print(sys.version.split()[0], 'torch', torch.__version__, 'mlagents', version('mlagents'))" 2>&1 | tail -1)"
+    case "$out" in 3.10.12*mlagents*) ok "rl/ env" "$out";; *) miss "rl/ env" "cd rl && uv sync";; esac
+    if (cd "$here_py/rl" && uv run --frozen --no-sync mlagents-learn --help >/dev/null 2>&1); then ok "mlagents-learn" "--help works"; else miss "mlagents-learn" "cd rl && uv sync"; fi
+  else miss "rl/ env" "rl/uv.lock not found (TASKS 1.6)"; fi
+fi
 if have conda; then warn "conda" "found ($(conda --version)); we use uv, so keep conda out of this project"; fi
 
 echo "== Unity =="
