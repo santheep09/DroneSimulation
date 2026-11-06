@@ -26,3 +26,7 @@
 - Exit codes: 0 pass, 2 test failures, 10/11 script preconditions. Results in `results/unity/` (git-ignored).
 - Each headless run makes Unity rewrite `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED` scripting define) and `ProjectAuditorSettings.asset`. This is noise; discard it with `git checkout -- DroneSim/ProjectSettings/` unless you changed settings on purpose.
 - Licence activation worked in batchmode with the existing Hub login.
+
+## 1.6 Python envs
+- `rl/` needs two workarounds (recorded in D-011): `grpcio` override (mlagents caps a version with no arm64 macOS wheel) and `setuptools<81` (mlagents imports `pkg_resources`).
+- PyPI `mlagents` is 1.1.0 and pairs with Unity package 4.1.0; the real Unity-to-Python handshake is untested until Phase 2b.
