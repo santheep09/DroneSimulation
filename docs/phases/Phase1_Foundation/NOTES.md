@@ -1,0 +1,15 @@
+# Phase 1 Notes
+
+## 1.2 / 1.3 gotchas
+- Node/npm not installed; probably not needed for the Unity MCP. Verify in 1.7.
+- Running `git lfs env` outside a repo creates an `lfs/` folder in the cwd. Run it only inside a repo.
+- `*.onnx` is deliberately NOT git-ignored (trained models may be committed as Unity assets). `*.pt`/`*.pth`/`*.ckpt` are ignored.
+- PNG is LFS-tracked only under `sim/Assets/`, so docs screenshots stay plain git.
+- Repo: https://github.com/santheep09/DroneSimulation (`main`).
+
+## 1.9 gotchas
+- `guard_learning.sh` only sees Edit/Write/NotebookEdit. A Bash redirect (`echo > learning/x.py`) bypasses it; `learning-mode.md` (1.9c) is the backstop.
+- Guard allows `test_*.py`, `*_test.py` and anything under a `tests/` dir inside `learning/`.
+- `py_lint.sh` is a no-op until `ml/` or `rl/` has a `pyproject.toml` (task 1.6).
+- User-level macOS notification hook (`~/.claude/settings.json`) not yet added; needs your OK.
+- Hook scripts verified by piping JSON; live in-session block still to be confirmed in a fresh session.
