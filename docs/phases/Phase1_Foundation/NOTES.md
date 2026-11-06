@@ -20,3 +20,9 @@
 - Project folder is `DroneSim/` (D-014), not `sim/`.
 - Rider preference lives in `com.unity3d.UnityEditor5.x` (`kScriptsDefaultApp`); it saves when Unity quits normally.
 - Template tutorial assets (`Readme.asset`, `TutorialInfo/`) are still present; one PNG is LFS-tracked.
+
+## 1.5 gotchas
+- `infra/unity_test.sh [filter]` needs every Unity Editor instance closed; first run compiles (a few minutes), later runs are fast.
+- Exit codes: 0 pass, 2 test failures, 10/11 script preconditions. Results in `results/unity/` (git-ignored).
+- Each headless run makes Unity rewrite `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED` scripting define) and `ProjectAuditorSettings.asset`. This is noise; discard it with `git checkout -- DroneSim/ProjectSettings/` unless you changed settings on purpose.
+- Licence activation worked in batchmode with the existing Hub login.
