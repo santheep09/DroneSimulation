@@ -1,0 +1,109 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(uv run pytest*)",
+      "Bash(uv run ruff *)",
+      "Bash(bash infra/*)",
+      "Bash(infra/*)",
+      "mcp__unity-mcp__Unity_GetConsoleLogs"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(rm *)",
+      "Bash(gh repo *)",
+      "mcp__unity-mcp__Unity_RunCommand",
+      "mcp__unity-mcp__Unity_Camera_Capture",
+      "mcp__unity-mcp__Unity_SceneView_Capture2DScene",
+      "mcp__unity-mcp__Unity_SceneView_CaptureMultiAngleSceneView",
+      "mcp__unity-mcp__Unity_AssetGeneration_GetModels"
+    ],
+    "deny": [
+      "mcp__unity-mcp__Unity_AssetGeneration_GenerateAsset",
+      "Read(./.env)",
+      "Read(./**/.env)",
+      "Edit(/DroneSim/Library/**)",
+      "Edit(/DroneSim/Temp/**)",
+      "Edit(/datasets/**)",
+      "Edit(/runs/**)"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "${CLAUDE_PROJECT_DIR}/.claude/statusline.sh"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/session_context.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/guard_privacy.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/py_lint.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "agent-protocols@anthropic-plugin-directory": false,
+    "amazon-selling-partner@anthropic-plugin-directory": false,
+    "ai-video-editor@anthropic-plugin-directory": false,
+    "blackrock-advisor-center-plugin@anthropic-plugin-directory": false,
+    "claude-for-financial-advisors@anthropic-plugin-directory": false,
+    "codesign@anthropic-plugin-directory": false,
+    "10x-Team@anthropic-plugin-directory": false,
+    "engineering@anthropic-plugin-directory": false,
+    "data@anthropic-plugin-directory": false,
+    "design@anthropic-plugin-directory": false,
+    "design-skills@anthropic-plugin-directory": false,
+    "finance@anthropic-plugin-directory": false,
+    "humanizer@anthropic-plugin-directory": false,
+    "pdf-viewer@anthropic-plugin-directory": false,
+    "postiz@anthropic-plugin-directory": false,
+    "product-management@anthropic-plugin-directory": false,
+    "productivity@anthropic-plugin-directory": false,
+    "render@anthropic-plugin-directory": false,
+    "social-media-skills@anthropic-plugin-directory": false,
+    "sp-global@anthropic-plugin-directory": false,
+    "study-desk@anthropic-plugin-directory": false,
+    "cowork-plugin-management@anthropic-plugin-directory": false,
+    "claude-code-setup@anthropic-plugin-directory": false,
+    "claude-security@anthropic-plugin-directory": false,
+    "code-review@claude-plugins-official": false,
+    "claude-security@claude-plugins-official": false,
+    "claude-code-setup@claude-plugins-official": false,
+    "mattpocock-skills@claude-plugins-official": true
+  },
+  "skillOverrides": {
+    "code-review": "off",
+    "code-review:code-review": "off"
+  }
+}

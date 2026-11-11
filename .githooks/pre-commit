@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Block commits whose added lines match personal-detail patterns (.private/patterns.txt, local only).
+root=$(git rev-parse --show-toplevel); pat="$root/.private/patterns.txt"
+[ -f "$pat" ] || exit 0
+hit=$(git diff --cached -U0 --no-color | grep -E '^\+[^+]' | grep -Ei -f "$pat" | head -3)
+[ -z "$hit" ] && exit 0
+echo "pre-commit: personal details found in staged changes; commit blocked:" >&2
+printf '%s\n' "$hit" | cut -c1-120 >&2
+exit 1

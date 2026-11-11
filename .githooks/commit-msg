@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+root=$(git rev-parse --show-toplevel); pat="$root/.private/patterns.txt"
+[ -f "$pat" ] || exit 0
+grep -Eiq -f "$pat" "$1" && { echo "commit-msg: personal details in commit message; blocked." >&2; exit 1; }
+exit 0

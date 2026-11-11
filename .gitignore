@@ -1,0 +1,62 @@
+# --- Unity (project lives in DroneSim/) ---
+DroneSim/[Ll]ibrary/
+DroneSim/[Tt]emp/
+DroneSim/[Oo]bj/
+DroneSim/[Bb]uild/
+DroneSim/[Bb]uilds/
+DroneSim/[Ll]ogs/
+DroneSim/[Uu]ser[Ss]ettings/
+DroneSim/[Mm]emoryCaptures/
+DroneSim/[Rr]ecordings/
+DroneSim/*.csproj
+DroneSim/*.sln
+DroneSim/*.slnx
+DroneSim/*.suo
+DroneSim/*.user
+DroneSim/*.userprefs
+DroneSim/*.pidb
+DroneSim/*.booproj
+DroneSim/.vsconfig
+DroneSim/sysinfo.txt
+DroneSim/crashlytics-build.properties
+DroneSim/Assets/Plugins/Editor/JetBrains*
+*.apk
+*.aab
+*.unitypackage
+
+# --- IDE ---
+.idea/
+.vs/
+.vscode/
+*.DotSettings.user
+
+# --- Python ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# --- Data, training runs, checkpoints (regenerate from a seed) ---
+data/
+datasets/
+runs/
+results/
+summaries/
+wandb/
+mlruns/
+*.pt
+*.pth
+*.ckpt
+
+# --- macOS ---
+.DS_Store
+
+# --- Claude Code (local only) ---
+.claude/settings.local.json
+CLAUDE.local.md
+
+# --- Personal context (never commit) ---
+.private/
