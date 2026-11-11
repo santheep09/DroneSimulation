@@ -4,7 +4,7 @@ from pathlib import Path
 
 import numpy as np
 
-from dronesim_ml.plotting import save_step_response
+from roversim_ml.plotting import save_step_response
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 

@@ -2,11 +2,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace DroneSim.Editor
+namespace RoverSim.Editor
 {
     public static class EnvironmentInfo
     {
-        [MenuItem("DroneSim/Environment Info")]
+        [MenuItem("RoverSim/Environment Info")]
         public static void Log()
         {
             var pipeline = GraphicsSettings.currentRenderPipeline;

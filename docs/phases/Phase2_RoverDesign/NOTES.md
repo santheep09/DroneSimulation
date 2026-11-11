@@ -3,7 +3,7 @@
 Findings, gotchas and links, kept by Claude Code. One heading per task id.
 
 ## 2.1
-- `ml/dronesim_ml/plotting.py` uses matplotlib's object API (`Figure` + Agg canvas), not pyplot, so it needs no GUI backend and PNG output is byte-identical for identical input (tested).
+- `ml/roversim_ml/plotting.py` uses matplotlib's object API (`Figure` + Agg canvas), not pyplot, so it needs no GUI backend and PNG output is byte-identical for identical input (tested).
 - matplotlib 3.11.2 added to the `ml` dev group (uv.lock updated).
 
 ## 2.4

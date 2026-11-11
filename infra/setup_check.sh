@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Drone Simulator: read-only setup check for macOS.
+# Rover Simulator: read-only setup check for macOS.
 # Installs nothing, changes nothing. Run:  bash infra/setup_check.sh
 # Paste the full output back to Claude.
 

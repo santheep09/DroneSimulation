@@ -22,7 +22,7 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 ### D-005 · 2026-10-07 · RL with Unity ML-Agents 4.x · **Accepted**
 - The original plan said 4.0.x. **Chosen (TASKS 1.6, 2026-11-06): Unity package `com.unity.ml-agents` 4.1.0** (released 2026-07-27, latest, no 4.1.x patch). It fixes a Play-mode exit crash, IL2CPP protobuf issues and `StackingSensor`; the 4.1 install docs describe it.
 - Python side: **`mlagents==1.1.0`** from PyPI (newest release, Oct 2024). The 4.1 install docs pair it with Python 3.10.12. PyPI has no newer `mlagents`; the gymnasium migration in 4.1.0 exists only on GitHub, not in the PyPI wheel.
-- Not yet verified: the real Unity-to-Python handshake. That happens when the package is added to `DroneSim/` (Phase 3 handshake smoke test). 1.6 only proves `mlagents-learn` installs and runs.
+- Not yet verified: the real Unity-to-Python handshake. That happens when the package is added to `RoverSim/` (Phase 3 handshake smoke test). 1.6 only proves `mlagents-learn` installs and runs.
 
 ### D-006 · 2026-10-07 · Tooling budget (details kept privately) · **Accepted**
 
@@ -54,10 +54,10 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 ### D-013 · 2026-11-05 · Unity version: 6.6, pinned to 6000.6.2f1 · **Accepted**
 - Already installed and newest; meets the ML-Agents 4.x (6000.0+) and Unity MCP (Unity 6+) requirements.
 - Considered 6.3 LTS (supported to Dec 2027, most-tested packages). Chose 6.6 to stay on one, current editor.
-- Rules: the exact editor version is recorded in `DroneSim/ProjectSettings/ProjectVersion.txt` and README; **no editor upgrades mid-phase**. Any upgrade happens only at a phase boundary, as a new D-xxx entry, with determinism tests and benchmarks re-run before and after.
+- Rules: the exact editor version is recorded in `RoverSim/ProjectSettings/ProjectVersion.txt` and README; **no editor upgrades mid-phase**. Any upgrade happens only at a phase boundary, as a new D-xxx entry, with determinism tests and benchmarks re-run before and after.
 - Risk: ML-Agents / `com.unity.ai.assistant` are documented against LTS. Check both install cleanly in Phase 1 (TASKS 1.6, 1.7); if either fails, revisit this decision.
 
-### D-014 · 2026-11-06 · Unity project folder is `DroneSim/` (was `sim/`) · **Accepted**
+### D-014 · 2026-11-06 · Unity project folder is `DroneSim/` (was `sim/`) · **Superseded by D-023**
 - The Unity project was created as `DroneSim` and kept; it matches the `DroneSim.*` C# namespace.
 - All earlier references to `sim/` (BRIEF, CLAUDE.md, ignore rules, permissions) now mean `DroneSim/`.
 
@@ -88,7 +88,7 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 - Phase 4 is reframed as a **validation pipeline**: scenario files, scoring, a ROS 2 software-in-the-loop agent next to the scripted and VLM agents, CI in Docker.
 - Optional after Phase 7, in priority order: a **lunar biome** (gravity as a parameter, no GPS), a **cross-simulator comparison** (CARLA or Gazebo, replacing the optional Unreal port), the **drone** as a second vehicle on the same platform.
 - D-016 (custom integrator, no Rigidbody forces) applies to every vehicle, not only the drone.
-- Repo name, the `DroneSim/` folder and the `DroneSim.*` namespace stay (D-014; renaming is churn with no gain). Docs call the project the search-and-rescue rover simulator.
+- Names: originally kept as `DroneSim` (D-014); renamed to RoverSimulation by D-023.
 - Why: a ground vehicle is the simpler first vehicle (no attitude control to fly) and matches off-road autonomy simulation work more closely; ROS 2 is the interface most robotics stacks expect.
 
 ### D-020 · 2026-11-11 · Frames: ENU world, FLU body (ROS REP 103) · **Accepted**
@@ -107,3 +107,9 @@ Format: ID · date · decision · status (Proposed / Accepted / Superseded) · r
 - This public repo contains the simulator, its infrastructure, design docs and the engineering workflow, so it can be shared as a reference.
 - Personal learning material (exercises, notes, progress) lives in a separate local workspace and is never committed here.
 - Public history was squashed into one baseline commit on 2026-11-11; older commit hashes quoted in Phase 1 docs refer to the archived pre-baseline history.
+
+### D-023 · 2026-11-11 · Project renamed to RoverSimulation · **Accepted**
+- Supersedes D-014 and the name-keeping line in D-019. Done before Phase 3, while little code exists.
+- GitHub repo and top folder: `RoverSimulation`. Unity project folder: `RoverSim/`. C# namespace `RoverSim.*`; test assembly `RoverSim.Tests.EditMode`; Editor menu `RoverSim/`. Unity `productName`: `RoverSim`.
+- Python: `roversim-ml` (package `roversim_ml`) and `roversim-rl`.
+- Recorded history (Phase 1 retro narrative, demo output, D-014) keeps the old names.

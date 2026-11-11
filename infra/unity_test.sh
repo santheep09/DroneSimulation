@@ -6,7 +6,7 @@ set -u
 root="$(cd "$(dirname "$0")/.." && pwd)"
 UNITY_PIN="${UNITY_PIN:-6000.6.2f1}"   # D-013
 unity="/Applications/Unity/Hub/Editor/$UNITY_PIN/Unity.app/Contents/MacOS/Unity"
-project="$root/DroneSim"
+project="$root/RoverSim"
 out="$root/results/unity"
 
 [ -x "$unity" ] || { echo "Unity $UNITY_PIN not found at $unity" >&2; exit 10; }

@@ -5,7 +5,7 @@ import sys
 import pytest
 import torch
 
-from dronesim_ml import get_device, seeded_generator
+from roversim_ml import get_device, seeded_generator
 
 
 def test_seeded_generator_is_deterministic() -> None:

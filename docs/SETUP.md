@@ -10,7 +10,7 @@ Run the check first, install whatever it lists as missing (in this order), then 
 
 ## Step 0: Run the check (read-only)
 ```bash
-cd ~/ClaudeWorkspace/SimulationProjects/DroneSimulation
+cd ~/ClaudeWorkspace/SimulationProjects/RoverSimulation
 bash infra/setup_check.sh
 ```
 Paste the output into the claude.ai chat. Anything marked `[MISSING]` maps to a step below.

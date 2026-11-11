@@ -1,7 +1,7 @@
 # CLAUDE.md: Search-and-Rescue Rover Simulator
 
 ## Project
-Unity 6 ground-vehicle simulator (plan v4, D-019). A 4-wheel skid-steer rover searches procedurally generated biomes (dunes, rocky wadis, urban blocks, mangroves) for people and vehicles. ROS 2 is the external interface (D-021). One sim core feeds: (1) a validation pipeline (scenarios scored on success/safety/cost, ROS 2 SIL and VLM agents, CI), (2) a synthetic dataset + object detector, (3) an RL search policy (ML-Agents 4.x). Optional later: lunar biome, cross-sim comparison, drone. Repo and `DroneSim` names stay (D-014). Portfolio project.
+Unity 6 ground-vehicle simulator (plan v4, D-019). A 4-wheel skid-steer rover searches procedurally generated biomes (dunes, rocky wadis, urban blocks, mangroves) for people and vehicles. ROS 2 is the external interface (D-021). One sim core feeds: (1) a validation pipeline (scenarios scored on success/safety/cost, ROS 2 SIL and VLM agents, CI), (2) a synthetic dataset + object detector, (3) an RL search policy (ML-Agents 4.x). Optional later: lunar biome, cross-sim comparison, drone. Names per D-023 (repo RoverSimulation, Unity folder and namespace RoverSim). Portfolio project.
 
 ## About me
 Personal context lives in `CLAUDE.local.md` (gitignored, loaded automatically). **Never copy personal details (background, employer, location, hardware, career plans, subscription) into any tracked file or commit message.** A hook enforces this.
@@ -16,7 +16,7 @@ This repo holds the project only. Claude implements directly (Build mode): Unity
 - One TASKS.md task at a time; say which one at session start.
 - **Plan mode** before changes touching more than 3 files, any new system, or anything in a new phase.
 - After each task: run the checks → small commit with a clear message → tick TASKS.md with the hash → gotchas to NOTES.md.
-- Never commit `DroneSim/Library`, `Temp`, `Logs`, `UserSettings`, `Builds`, `.venv`, datasets, training runs.
+- Never commit `RoverSim/Library`, `Temp`, `Logs`, `UserSettings`, `Builds`, `.venv`, datasets, training runs.
 - Everything that generates data or runs simulation takes a **seed** and is deterministic.
 - Prefer headless CLI steps (`-batchmode`, `-runTests`, `-executeMethod`) so results can be checked without the Editor. When the Editor is required, tell me exactly what to click or check.
 - Unity MCP is **read-only** until DECISIONS.md says otherwise.
@@ -29,7 +29,7 @@ This repo holds the project only. Claude implements directly (Build mode): Unity
 - Custom label capture (no Unity Perception): segmentation, 2D boxes, COCO export.
 
 ## Layout
-`DroneSim/` Unity 6.6 project, pinned to 6000.6.2f1 (D-013: never upgrade mid-phase) (C# namespace `DroneSim.*`) · `ml/` Python 3.12 + current PyTorch (uv) · `rl/` Python 3.10.12 + torch 2.2 + mlagents (uv; ML-Agents requires it) · `infra/` scripts · `docs/` plan, decisions, phases, specs.
+`RoverSim/` Unity 6.6 project, pinned to 6000.6.2f1 (D-013: never upgrade mid-phase) (C# namespace `RoverSim.*`) · `ml/` Python 3.12 + current PyTorch (uv) · `rl/` Python 3.10.12 + torch 2.2 + mlagents (uv; ML-Agents requires it) · `infra/` scripts · `docs/` plan, decisions, phases, specs.
 
 ## Conventions
 Path-scoped rules in `.claude/rules/` (`unity-csharp.md`, `python.md`) load when matching files are touched.
@@ -48,7 +48,7 @@ New decisions go in `docs/DECISIONS.md` as the next D-xxx, even when `/grill-wit
 
 ### Issue tracker
 
-GitHub Issues on santheep09/DroneSimulation, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+GitHub Issues on santheep09/RoverSimulation, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

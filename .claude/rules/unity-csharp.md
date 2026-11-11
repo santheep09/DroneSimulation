@@ -1,10 +1,10 @@
 ---
 paths:
-  - "DroneSim/**/*.cs"
+  - "RoverSim/**/*.cs"
 ---
 # Unity C# rules
 
-- Namespace `DroneSim.*`. PascalCase types and methods, `_camelCase` private fields.
+- Namespace `RoverSim.*`. PascalCase types and methods, `_camelCase` private fields.
 - One MonoBehaviour per file; file name equals class name.
 - Dynamics code uses SI units, world ENU and body FLU (ROS REP 103, D-020; up is positive z). ENU/SI types never touch `Transform` outside the single boundary class that converts to Unity axes.
 - Physics runs at a fixed 500 Hz step (`Time.fixedDeltaTime = 0.002`). Dynamics and control live in `FixedUpdate`, never `Update`.

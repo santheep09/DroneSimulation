@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-namespace DroneSim.Tests.EditMode
+namespace RoverSim.Tests.EditMode
 {
     public class TimestepTests
     {

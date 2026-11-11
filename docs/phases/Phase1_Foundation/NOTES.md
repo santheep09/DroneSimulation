@@ -4,8 +4,8 @@
 - Node/npm not installed; probably not needed for the Unity MCP. Verify in 1.7.
 - Running `git lfs env` outside a repo creates an `lfs/` folder in the cwd. Run it only inside a repo.
 - `*.onnx` is deliberately NOT git-ignored (trained models may be committed as Unity assets). `*.pt`/`*.pth`/`*.ckpt` are ignored.
-- PNG is LFS-tracked only under `DroneSim/Assets/`, so docs screenshots stay plain git.
-- Repo: https://github.com/santheep09/DroneSimulation (`main`).
+- PNG is LFS-tracked only under `RoverSim/Assets/`, so docs screenshots stay plain git.
+- Repo: https://github.com/santheep09/RoverSimulation (`main`).
 
 ## 1.9 gotchas
 - `py_lint.sh` is a no-op until `ml/` or `rl/` has a `pyproject.toml` (task 1.6).
@@ -15,14 +15,14 @@
 ## 1.4 gotchas
 - Unity Hub's "create git repository" option makes a nested `.git` plus a GitHub repo (with your git identity). Leave it off; the project lives in the main repo.
 - First open re-serialises a few tracked assets (`DefaultVolumeProfile.asset`, `ProjectAuditorSettings.asset`, new `TimelineSettings.asset`). Harmless; commit them once.
-- Project folder is `DroneSim/` (D-014), not `sim/`.
+- Project folder is `RoverSim/` (D-014), not `sim/`.
 - Rider preference lives in `com.unity3d.UnityEditor5.x` (`kScriptsDefaultApp`); it saves when Unity quits normally.
 - Template tutorial assets (`Readme.asset`, `TutorialInfo/`) are still present; one PNG is LFS-tracked.
 
 ## 1.5 gotchas
 - `infra/unity_test.sh [filter]` needs every Unity Editor instance closed; first run compiles (a few minutes), later runs are fast.
 - Exit codes: 0 pass, 2 test failures, 10/11 script preconditions. Results in `results/unity/` (git-ignored).
-- Each headless run makes Unity rewrite `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED` scripting define) and `ProjectAuditorSettings.asset`. This is noise; discard it with `git checkout -- DroneSim/ProjectSettings/` unless you changed settings on purpose.
+- Each headless run makes Unity rewrite `ProjectSettings/ProjectSettings.asset` (a `SENTIS_ANALYTICS_ENABLED` scripting define) and `ProjectAuditorSettings.asset`. This is noise; discard it with `git checkout -- RoverSim/ProjectSettings/` unless you changed settings on purpose.
 - Licence activation worked in batchmode with the existing Hub login.
 
 ## 1.6 Python envs
@@ -31,7 +31,7 @@
 
 ## 1.8 / 1.9f
 - Project fixed timestep was Unity's 0.02 default; now 0.002 in `TimeManager.asset` (D-004). The test failed red first, then green.
-- Every headless Unity run drifts `ProjectSettings/ProjectSettings.asset` and `ProjectAuditorSettings.asset`: discard with `git checkout -- DroneSim/ProjectSettings/<file>` before committing.
+- Every headless Unity run drifts `ProjectSettings/ProjectSettings.asset` and `ProjectAuditorSettings.asset`: discard with `git checkout -- RoverSim/ProjectSettings/<file>` before committing.
 - The statusline-setup subagent has no Bash tool: it can write files but not chmod or test them.
 
 ## 1.7 Unity MCP (read-only)

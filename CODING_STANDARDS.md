@@ -16,6 +16,6 @@ See `.claude/rules/unity-csharp.md`. Highlights: no allocations or LINQ in `Fixe
 See `.claude/rules/python.md`. Highlights: `uv` only, type hints, ruff-clean, pytest coverage, explicit seeds.
 
 ## Repo hygiene
-- Never commit `DroneSim/Library`, `Temp`, `Logs`, `UserSettings`, `Builds`, `.venv`, datasets or training runs.
+- Never commit `RoverSim/Library`, `Temp`, `Logs`, `UserSettings`, `Builds`, `.venv`, datasets or training runs.
 - One TASKS.md task per commit; no scope creep beyond the task.
 - No personal details in tracked files or commit messages.

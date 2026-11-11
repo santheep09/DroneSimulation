@@ -27,8 +27,8 @@
       "mcp__unity-mcp__Unity_AssetGeneration_GenerateAsset",
       "Read(./.env)",
       "Read(./**/.env)",
-      "Edit(/DroneSim/Library/**)",
-      "Edit(/DroneSim/Temp/**)",
+      "Edit(/RoverSim/Library/**)",
+      "Edit(/RoverSim/Temp/**)",
       "Edit(/datasets/**)",
       "Edit(/runs/**)"
     ]

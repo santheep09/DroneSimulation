@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace DroneSim.Tests.EditMode
+namespace RoverSim.Tests.EditMode
 {
     public class SmokeTests
     {

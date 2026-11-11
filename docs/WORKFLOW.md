@@ -5,7 +5,7 @@
 | Work | Where | Why |
 |---|---|---|
 | Strategy, phase planning, reviews, re-planning, write-ups | **claude.ai** (the "Simulation Portfolio Creation" project) | Long-form thinking; the plan stays visible in every session |
-| Writing code, Unity work, running Python/training, git | **Claude Code** on the Mac, opened in this `DroneSimulation` folder | Runs natively on macOS: Unity batchmode, PyTorch MPS, git, tests. Reads `CLAUDE.md` every session |
+| Writing code, Unity work, running Python/training, git | **Claude Code** on the Mac, opened in this `RoverSimulation` folder | Runs natively on macOS: Unity batchmode, PyTorch MPS, git, tests. Reads `CLAUDE.md` every session |
 
 Rule of thumb: **decide in claude.ai, build in Claude Code.** The docs in `docs/` are where the two meet. Both read them, and Claude Code keeps the task files up to date.
 

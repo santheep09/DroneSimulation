@@ -1,6 +1,6 @@
 {
-    "name": "DroneSim.Tests.EditMode",
-    "rootNamespace": "DroneSim.Tests",
+    "name": "RoverSim.Tests.EditMode",
+    "rootNamespace": "RoverSim.Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"

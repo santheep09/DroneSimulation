@@ -34,7 +34,7 @@ Tasks 1.1 to 1.9 are done and verified. The final exit-criteria check (2026-11-0
 4. Fewer confirmation boxes for trivial steps.
 5. Unity MCP cannot enforce read-only for `RunCommand`; the Unity-side Allow/Revoke approval and the ask rule are the only controls.
 6. The macOS notification hook in the user-level settings is still unanswered.
-7. Template tutorial assets (`Readme.asset`, `TutorialInfo/`) remain in `DroneSim/`.
+7. Template tutorial assets (`Readme.asset`, `TutorialInfo/`) remain in `RoverSim/` (was `DroneSim/`, D-023).
 
 ## Carry into Phase 2
 - The foundations Phase 2 builds on are in place: SI units (frames later moved to ENU/FLU, D-020), 500 Hz step, the test loop and the `ml/` env.
