@@ -10,7 +10,7 @@
 - [x] **2.3 Session hook.** `session_context.sh` reports the first phase with open tasks instead of the first TASKS.md alphabetically. *(pre-baseline)*
 - [x] **2.4 Project-only repo (D-022).** Learning material moved out of the repo; public history squashed into one baseline commit. (4f75b9b)
 
-- [ ] **2.4a Rename to RoverSimulation (D-023).** Repo, Unity folder `RoverSim/`, namespace `RoverSim.*`, Python `roversim-*`; tests green before and after.
+- [x] **2.4a Rename to RoverSimulation (D-023).** Repo, Unity folder `RoverSim/`, namespace `RoverSim.*`, Python `roversim-*`; tests green before and after. (7cc91ce)
 
 ## ROS 2 dev environment
 - [ ] **2.5 Choose distro and viewer (≈1.5 h).** Current official docs: ROS 2 distro (LTS, arm64 images), macOS viewer path (RViz over VNC vs Foxglove). *Done:* D-021 updated with the choice and links.
